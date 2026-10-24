@@ -57,7 +57,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,
+            //スクロール方向を逆転,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -95,6 +95,40 @@
             bindings = <&msc>, <&msc>;
 
             tap-ms = <20>;
+        };
+    };
+
+    macros {
+        Add: Add {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL>,
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp SEMICOLON>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>,
+                <&macro_release>,
+                <&kp LCTRL>;
+
+            label = "ADD";
+        };
+
+        Delete: Delete {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL>,
+                <&macro_tap>,
+                <&kp MINUS>,
+                <&macro_release>,
+                <&kp LCTRL>;
+
+            label = "DELETE";
         };
     };
 
@@ -140,10 +174,10 @@
 
         CURSOR {
             bindings = <
-&kp LC(W)                  &kp LG(LEFT_ARROW)      &kp LG(UP_ARROW)       &kp LG(RIGHT_ARROW)  &none                      &kp PAGE_UP             &kp HOME        &kp UP_ARROW    &kp END          &kp PAGE_DOWN
-&mt LEFT_SHIFT LEFT_SHIFT  &mt LEFT_CONTROL LCTRL  &mt LEFT_ALT LEFT_ALT  &kp TAB              &none                      &kp LA(LEFT_ARROW)      &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LA(RIGHT_ARROW)
-&kp LC(T)                  &kp LC(X)               &kp LC(C)              &kp LC(V)            &none                      &kp LC(PAGE_UP)         &kp F2          &kp F5          &kp F4           &kp LC(PAGE_DOWN)
-&none                      &none                   &none                  &none                &none  &none    &kp LG(V)  &mt RIGHT_SHIFT DELETE                  &none           &none            &kp F2
+&kp LC(W)                  &kp LG(LEFT_ARROW)      &kp LG(UP_ARROW)       &kp LG(RIGHT_ARROW)  &Add                         &kp PAGE_UP             &kp HOME        &kp UP_ARROW    &kp END          &kp PAGE_DOWN
+&mt LEFT_SHIFT LEFT_SHIFT  &mt LEFT_CONTROL LCTRL  &mt LEFT_ALT LEFT_ALT  &kp TAB              &Delete                      &kp LA(LEFT_ARROW)      &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LA(RIGHT_ARROW)
+&kp LC(T)                  &kp LC(X)               &kp LC(C)              &kp LC(V)            &none                        &kp LC(PAGE_UP)         &kp F2          &kp F5          &kp F4           &kp LC(PAGE_DOWN)
+&none                      &none                   &none                  &none                &none    &none    &kp LG(V)  &mt RIGHT_SHIFT DELETE                  &none           &none            &kp F2
             >;
         };
 
