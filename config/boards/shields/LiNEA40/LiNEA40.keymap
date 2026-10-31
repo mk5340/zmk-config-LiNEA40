@@ -39,11 +39,11 @@
         compatible = "zmk,input-processor-temp-pointing-acceleration";
         #input-processor-cells = <0>;
         
-        min-factor = <600>;             // 低速時は0.6倍に落として精密操作
+        min-factor = <400>;             // 低速時は0.6倍に落として精密操作
         max-factor = <4000>;            // 高速時は4倍まで大きく加速
         speed-threshold = <600>;        // 緩やかに動き出す閾値
         speed-max = <3000>;             // 最高速に達する閾値
-        acceleration-exponent = <2>;   // 2次カーブでスムーズに立ち上げる
+        acceleration-exponent = <3>;   // 2次カーブでスムーズに立ち上げる
     };
 
     input_processors {
