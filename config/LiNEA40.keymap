@@ -57,7 +57,7 @@
         layers = <CURSOR>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,
+            //スクロール方向を逆転,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -137,10 +137,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W        &kp E               &kp R  &kp T                                  &kp Y                   &kp U    &kp I                &kp O    &kp P
-&mt LEFT_SHIFT A  &mt LCTRL S  &kp D               &kp F  &kp G                                  &kp H                   &lt 3 J  &kp K                &kp L    &mt RCTRL ENTER
-&lt 5 Z           &kp X        &kp C               &kp V  &kp B                                  &kp N                   &kp M    &kp COMMA            &kp DOT  &kp MINUS
-&kp ESC           &kp F7       &mt LEFT_ALT GRAVE  &mo 1  &lt 3 SPACE  &lt 2 TAB    &lt 3 GRAVE  &mt RIGHT_SHIFT DELETE           &lt 6 RIGHT_BRACKET  &kp F10  &kp RGUI
+&kp Q             &kp W        &kp E               &kp R  &kp T                                  &kp Y                      &kp U    &kp I                &kp O    &kp P
+&mt LEFT_SHIFT A  &mt LCTRL S  &kp D               &kp F  &kp G                                  &kp H                      &lt 3 J  &kp K                &kp L    &mt RCTRL ENTER
+&lt 5 Z           &kp X        &kp C               &kp V  &kp B                                  &kp N                      &kp M    &kp COMMA            &kp DOT  &kp MINUS
+&kp ESC           &kp F7       &mt LEFT_ALT GRAVE  &mo 1  &lt 3 SPACE  &lt 2 TAB    &lt 3 GRAVE  &mt RIGHT_SHIFT BACKSPACE           &lt 6 RIGHT_BRACKET  &kp F10  &kp RGUI
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
@@ -150,10 +150,10 @@
 
         KIGO {
             bindings = <
-&kp PERCENT  &kp DOLLAR  &kp AMPERSAND  &kp UNDERSCORE   &kp SLASH                     &kp NON_US_BACKSLASH  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN
-&kp PIPE     &kp HASH    &kp ASTERISK   &kp PLUS         &kp EQUAL                     &kp AT_SIGN           &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp COLON
-&kp CARET    &kp TILDE   &none          &kp EXCLAMATION  &kp QUESTION                  &kp GRAVE             &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp SQT        &kp DOUBLE_QUOTES
-&none        &none       &none          &none            &none         &none    &none  &none                                       &none                  &none          &kp RGUI
+&kp LS(N5)    &kp LS(DOLLAR)  &kp LS(AMPERSAND)     &kp LS(UNDERSCORE)  &kp SLASH                      &kp INT3     &kp LS(RIGHT_BRACKET)  &kp LS(NON_US_HASH)    &kp LESS_THAN  &kp GREATER_THAN
+&kp LS(INT1)  &kp N3          &kp LS(SINGLE_QUOTE)  &kp LS(SEMICOLON)   &kp LS(MINUS)                  &kp AT_SIGN  &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp COLON
+&kp EQUAL     &kp LS(EQUAL)   &none                 &kp LS(N1)          &kp LS(SLASH)                  &kp GRAVE    &kp LEFT_BRACKET       &kp RIGHT_BRACKET      &kp SQT        &kp DOUBLE_QUOTES
+&none         &none           &none                 &none               &none          &none    &none  &none                               &none                  &none          &kp RGUI
             >;
         };
 
