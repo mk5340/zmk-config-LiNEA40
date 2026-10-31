@@ -36,12 +36,12 @@
 &mt {
     flavor = "balanced";
     tapping-term-ms = <180>;
-    quick-tap-ms = <125>;
+    quick-tap-ms = <175>;
 };
 
 &lt {
     tapping-term-ms = <180>;
-    quick-tap-ms = <120>;
+    quick-tap-ms = <175>;
     flavor = "balanced";
 };
 
@@ -69,7 +69,7 @@
         layers = <CURSOR>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,,,,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,,,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
