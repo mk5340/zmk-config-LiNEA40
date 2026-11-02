@@ -14,23 +14,7 @@
 #define SCROLL 5
 #define WIRELESS 6
 
-/* 
-  // [削除] 古いキーボード用マウス移動設定（競合や混乱を防ぐためコメントアウトで削除）
-  &mmv {
-      delay-ms = <20>;
-      trigger-period-ms = <5>;
-      time-to-max-speed-ms = <100>;
-      acceleration-exponent = <2>;
-  };
-*/
-//mouse scroll
 
-&msc {
-    delay-ms = <3>;
-    trigger-period-ms = <3>;
-    time-to-max-speed-ms = <100>;
-    acceleration-exponent = <0>;
-};
 
 &mt {
     flavor = "balanced";
@@ -44,8 +28,25 @@
     flavor = "balanced";
 };
 
+//mouse cursol
 
+&mmv {
+    delay-ms = <20>;
+    trigger-period-ms = <5>;
+    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <2>;
+};
 
+//mouse scroll
+
+&msc {
+    delay-ms = <3>;
+    trigger-period-ms = <3>;
+    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <0>;
+};
+
+/ {
     input_processors {
         zip_wheel_scaler: zip_wheel_scaler {
             compatible = "zmk,input-processor-scaler";
@@ -54,44 +55,23 @@
             codes = <INPUT_REL_WHEEL>;
             track-remainders;
         };
-    
+    };
 };
 
 &msc_input_listener {
     speed_up {
         layers = <FUNCTION>;
-        input-processors = <&zip_wheel_scaler 2 1>; //スクロールを3倍速にする
+        input-processors = <&zip_wheel_scaler 3 1>; //スクロールを3倍速にする
     };
 };
 
 &trackball_listener {
-    // レイヤー3での縦スクロール動作（Y軸反転 ＋ スクロール変換 ＋ 慣性）
-    scroller_v {
-        layers = <3>;
-        input-processors = <
-            &zip_y_scaler (-1) 1
-            &zip_xy_to_scroll_mapper
-            &scroll_inertia_v
-            &zip_scroll_scaler 4 675
-            >;
-    };
-
-    // レイヤー1での横スクロール動作（スクロール変換 ＋ 慣性）
-    scroller_h {
-        layers = <1>;
-        input-processors = <
-            &zip_y_scaler (-1) 1
-            &zip_xy_to_scroll_mapper
-            &scroll_inertia_h
-            &zip_scroll_scaler 4 675
-            >;
-    };
-
-    // 【追加】通常カーソル操作時に加速プロセッサを適用
-    pointer {
-        &pointer_accel // ← ポインタ加速プロセッサを追加
-            // 必要に応じて他のトランスフォーム等を続けて記述
-        >;
+    scroller {
+        layers = <SCROLL>;
+        input-processors =
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            //スクロール方向を逆転
+            <&zip_xy_to_scroll_mapper>;
     };
 };
 
