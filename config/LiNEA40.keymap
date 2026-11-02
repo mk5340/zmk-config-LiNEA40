@@ -4,9 +4,9 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/input_transform.h>
-#include <input/processors.dtsi>
+#include <input/processors.dtsi>　// ←追加：加速度
+#include <behaviors/input_gestures_accel.dtsi>　// ←追加：加速度
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <dt-bindings/zmk/pointing_acceleration.h> // ← 加速モジュール用ヘッダーを追加
 #include <scroll-snap.dtsi> // ←追加：スナップ用ヘッダー
 
 #define MOUSE 1
@@ -66,17 +66,16 @@
         scale     = <4>;   /* scroll_scalerと合わせる */
         scale-div = <675>; /* scroll_scalerと合わせる */
     };
-        // 【追加】ZMK Pointing Acceleration（微細操作重視の設定）
-    zip_temp_pointing_acceleration: zip_temp_pointing_acceleration {
-        compatible = "zmk,input-processor-temp-pointing-acceleration";
-        #input-processor-cells = <0>;
-        
-        min-factor = <100>;             // 低速時は0.6倍に落として精密操作
-        max-factor = <9000>;            // 高速時は4倍まで大きく加速
-        speed-threshold = <800>;        // 緩やかに動き出す閾値
-        speed-max = <3500>;             // 最高速に達する閾値
-        acceleration-exponent = <3>;   // 2次カーブでスムーズに立ち上げる
-    };
+
+    &pointer_accel {
+        input-type = <INPUT_EV_REL>; // 相対座標デバイス（トラックボールやマウス等）用[cite: 6, 7]
+        track-remainders;           // 端数の移動量を蓄積して精度を上げる[cite: 7]
+        min-factor = <800>;         // 低速時の倍率（800 = 0.8倍）[cite: 6, 7]
+        max-factor = <3000>;        // 高速時の最大倍率（3000 = 3.0倍）[cite: 6, 7]
+        speed-threshold = <1200>;   // 加速が開始する速度の閾値[cite: 6, 7]
+        speed-max = <6000>;         // 最高速に達する速度の閾値[cite: 6, 7]
+        acceleration-exponent = <2>; // 加速カーブ（1=リニア、2=二次関数、3=三乗）[cite: 6, 7]
+};
 
 };
 
@@ -123,7 +122,9 @@
 
     // 【追加】通常カーソル操作時に加速プロセッサを適用
     pointer {
-        input-processors = <&zip_temp_pointing_acceleration>;
+        &pointer_accel // ← ポインタ加速プロセッサを追加
+            // 必要に応じて他のトランスフォーム等を続けて記述
+        >;
     };
 };
 
