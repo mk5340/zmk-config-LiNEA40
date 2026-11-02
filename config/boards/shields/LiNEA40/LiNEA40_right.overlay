@@ -80,6 +80,9 @@
 &trackball_listener {
     status = "okay";
     device = <&trackball>;
+    pointer {
+        input-processors = <&pointer_accel>;
+    };
 };
 
 
