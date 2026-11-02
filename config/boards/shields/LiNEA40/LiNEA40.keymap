@@ -42,7 +42,7 @@
         min-factor = <100>;             // 低速時は0.6倍に落として精密操作
         max-factor = <9000>;            // 高速時は4倍まで大きく加速
         speed-threshold = <800>;        // 緩やかに動き出す閾値
-        speed-max = <2000>;             // 最高速に達する閾値
+        speed-max = <3500>;             // 最高速に達する閾値
         acceleration-exponent = <3>;   // 2次カーブでスムーズに立ち上げる
     };
 
@@ -54,17 +54,7 @@
             codes = <INPUT_REL_WHEEL>;
             track-remainders;
         };
-
-        // 【追加】水平スクロール（HWHEEL）の移動量を0倍にして完全に遮断するスケーラー
-        zip_scroll_x_scaler: zip_scroll_x_scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type = <INPUT_EV_REL>;
-        codes = <INPUT_REL_HWHEEL>;
-
-    };
-
-    
+  
 };
 
 &msc_input_listener {
@@ -79,6 +69,7 @@
     scroller {
         layers = <SCROLL>;
         input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT> //スクロール方向を逆転
+                        , <&zip_x_scaler 0 1> //20261102水平スクロールを無効化
                          , <&zip_xy_to_scroll_mapper>;
     };
 
