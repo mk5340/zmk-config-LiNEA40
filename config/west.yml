@@ -28,6 +28,6 @@ manifest:
       revision: main # ← 追加
     - name: zmk-scroll-snap # ←追加
       remote: kot149 # ←追加
-      revision: main # ←追加
+      revision: v1 # ←追加
   self:
     path: config
