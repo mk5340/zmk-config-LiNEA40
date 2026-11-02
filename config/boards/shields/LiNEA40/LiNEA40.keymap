@@ -97,6 +97,7 @@
             &zip_xy_to_scroll_mapper
             &scroll_inertia_v
             &zip_scroll_scaler 4 675
+            >;
     };
 
     // レイヤー1での横スクロール動作（スクロール変換 ＋ 慣性）
@@ -107,6 +108,7 @@
             &zip_xy_to_scroll_mapper
             &scroll_inertia_h
             &zip_scroll_scaler 4 675
+            >;
     };
 
     // 【追加】通常カーソル操作時に加速プロセッサを適用
