@@ -53,8 +53,8 @@
         #input-processor-cells = <0>;
         axis = <1>;  /* 1: 縦スクロール */
         layer = <3>; /* 対象レイヤー: 3 */
-        scale     = <1>;   /* scroll_scalerと合わせる */
-        scale-div = <10>; /* scroll_scalerと合わせる */
+        scale     = <4>;   /* scroll_scalerと合わせる */
+        scale-div = <675>; /* scroll_scalerと合わせる */
     };
 
     // 【追加】横スクロール用慣性プロセッサ（レイヤー1用）
@@ -63,8 +63,8 @@
         #input-processor-cells = <0>;
         axis = <2>;  /* 2: 横スクロール */
         layer = <1>; /* 対象レイヤー: 1 */
-        scale     = <1>;   /* scroll_scalerと合わせる */
-        scale-div = <>; /* scroll_scalerと合わせる */
+        scale     = <4>;   /* scroll_scalerと合わせる */
+        scale-div = <675>; /* scroll_scalerと合わせる */
     };
         // 【追加】ZMK Pointing Acceleration（微細操作重視の設定）
     zip_temp_pointing_acceleration: zip_temp_pointing_acceleration {
@@ -88,13 +88,13 @@
             codes = <INPUT_REL_WHEEL>;
             track-remainders;
         };
-    };
+    
 };
 
 &msc_input_listener {
     speed_up {
         layers = <FUNCTION>;
-        input-processors = <&zip_wheel_scaler 3 1>; //スクロールを3倍速にする
+        input-processors = <&zip_wheel_scaler 2 1>; //スクロールを3倍速にする
     };
 };
 
@@ -106,7 +106,7 @@
             &zip_y_scaler (-1) 1
             &zip_xy_to_scroll_mapper
             &scroll_inertia_v
-            &zip_scroll_scaler 1 10
+            &zip_scroll_scaler 4 675
             >;
     };
 
@@ -117,7 +117,7 @@
             &zip_y_scaler (-1) 1
             &zip_xy_to_scroll_mapper
             &scroll_inertia_h
-            &zip_scroll_scaler 1 10
+            &zip_scroll_scaler 4 675
             >;
     };
 
