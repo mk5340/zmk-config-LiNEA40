@@ -6,6 +6,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <scroll-snap.dtsi> // ←追加：スナップ用ヘッダー
 
 #define MOUSE 1
 #define MARK 2
@@ -70,6 +71,7 @@
         layers = <SCROLL>;
         input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT> //スクロール方向を逆転
                          , <&zip_xy_to_scroll_mapper>;
+                         , <&zip_scroll_snap>; // ★ 追加
     };
 
     // 【追加】通常カーソル操作時に加速プロセッサを適用

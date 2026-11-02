@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: oleksandrmaslov # ← 追加
       url-base: https://github.com/oleksandrmaslov # ← 追加
+    - name: kot149 # ←追加
+      url-base: https://github.com/kot149 # ← 追加
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -24,5 +26,8 @@ manifest:
     - name: zmk-pointing-acceleration # ← 追加
       remote: oleksandrmaslov # ← 追加
       revision: main # ← 追加
+    - name: zmk-scroll-snap # ←追加
+      remote: kot149 # ←追加
+      revision: main # ←追加
   self:
     path: config
