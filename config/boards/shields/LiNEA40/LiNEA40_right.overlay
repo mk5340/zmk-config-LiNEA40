@@ -1,7 +1,6 @@
 #include "LiNEA40.dtsi"
 #include <input/processors.dtsi> // ←追加：加速度
 #include <behaviors/input_gestures_accel.dtsi> // ←追加：加速度
-#include <scroll-snap.dtsi> // ←追加：スナップ用ヘッダー
 
 &default_transform {
     col-offset = <6>;
@@ -68,11 +67,6 @@
     };
 };
 
-&trackball_listener {
-    status = "okay";
-    device = <&trackball>;
-};
-
 &pointer_accel {
         input-type = <INPUT_EV_REL>; // 相対座標デバイス（トラックボールやマウス等）用[cite: 6, 7]
         track-remainders;           // 端数の移動量を蓄積して精度を上げる[cite: 7]
@@ -83,30 +77,10 @@
         acceleration-exponent = <2>; // 加速カーブ（1=リニア、2=二次関数、3=三乗）[cite: 6, 7]
 };
 
-
-/ {
-        // 【追加】縦スクロール用慣性プロセッサ（レイヤー3用）
-    scroll_inertia_v: scroll_inertia_v {
-        compatible = "zmk,input-processor-scroll-inertia";
-        #input-processor-cells = <0>;
-        axis = <1>;  /* 1: 縦スクロール */
-        layer = <3>; /* 対象レイヤー: 3 */
-        scale     = <4>;   /* scroll_scalerと合わせる */
-        scale-div = <675>; /* scroll_scalerと合わせる */
-    };
+&trackball_listener {
+    status = "okay";
+    device = <&trackball>;
 };
 
-/ {
-
-    // 【追加】横スクロール用慣性プロセッサ（レイヤー1用）
-    scroll_inertia_h: scroll_inertia_h {
-        compatible = "zmk,input-processor-scroll-inertia";
-        #input-processor-cells = <0>;
-        axis = <2>;  /* 2: 横スクロール */
-        layer = <1>; /* 対象レイヤー: 1 */
-        scale     = <4>;   /* scroll_scalerと合わせる */
-        scale-div = <675>; /* scroll_scalerと合わせる */
-    };
 
 
-};
