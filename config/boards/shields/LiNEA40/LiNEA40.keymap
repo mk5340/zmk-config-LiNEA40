@@ -40,8 +40,8 @@
         #input-processor-cells = <0>;
         axis = <1>;  /* 1: 縦スクロール */
         layer = <3>; /* 対象レイヤー: 3 */
-        scale     = <4>;   /* scroll_scalerと合わせる */
-        scale-div = <675>; /* scroll_scalerと合わせる */
+        scale     = <1>;   /* scroll_scalerと合わせる */
+        scale-div = <10>; /* scroll_scalerと合わせる */
     };
 
     // 【追加】横スクロール用慣性プロセッサ（レイヤー1用）
@@ -50,8 +50,8 @@
         #input-processor-cells = <0>;
         axis = <2>;  /* 2: 横スクロール */
         layer = <1>; /* 対象レイヤー: 1 */
-        scale     = <4>;   /* scroll_scalerと合わせる */
-        scale-div = <675>; /* scroll_scalerと合わせる */
+        scale     = <1>;   /* scroll_scalerと合わせる */
+        scale-div = <10>; /* scroll_scalerと合わせる */
     };
 };
 
@@ -96,7 +96,7 @@
             &zip_y_scaler (-1) 1
             &zip_xy_to_scroll_mapper
             &scroll_inertia_v
-            &zip_scroll_scaler 4 675
+            &zip_scroll_scaler 1 10
             >;
     };
 
@@ -107,7 +107,7 @@
             &zip_y_scaler (-1) 1
             &zip_xy_to_scroll_mapper
             &scroll_inertia_h
-            &zip_scroll_scaler 4 675
+            &zip_scroll_scaler 1 10
             >;
     };
 
