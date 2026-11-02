@@ -69,7 +69,7 @@
         layers = <CURSOR>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,,,,,,,,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,,,,,,,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -78,8 +78,8 @@
     combos {
         compatible = "zmk,combos";
 
-        ZenkakuHankaku {
-            bindings = <&kp GRAVE>;
+        Function10 {
+            bindings = <&kp F10>;
             key-positions = <12 13>;
         };
 
@@ -91,6 +91,11 @@
         LeftClick {
             bindings = <&mkp MB1>;
             key-positions = <17 18>;
+        };
+
+        Function7 {
+            bindings = <&kp F7>;
+            key-positions = <16 17>;
         };
     };
 
@@ -149,10 +154,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W        &kp E               &kp R  &kp T                                  &kp Y                      &kp U    &kp I                &kp O    &kp P
-&mt LEFT_SHIFT A  &mt LCTRL S  &kp D               &kp F  &kp G                                  &kp H                      &lt 3 J  &kp K                &kp L    &mt RCTRL ENTER
-&lt 5 Z           &kp X        &kp C               &kp V  &kp B                                  &kp N                      &kp M    &kp COMMA            &kp DOT  &kp MINUS
-&kp ESC           &kp F7       &mt LEFT_ALT GRAVE  &mo 1  &lt 3 SPACE  &lt 2 TAB    &lt 3 GRAVE  &mt RIGHT_SHIFT BACKSPACE           &lt 6 RIGHT_BRACKET  &kp F10  &kp RGUI
+&kp Q             &kp W        &kp E           &kp R  &kp T                                  &kp Y                      &kp U    &kp I                &kp O    &kp P
+&mt LEFT_SHIFT A  &mt LCTRL S  &mt LEFT_ALT D  &kp F  &kp G                                  &kp H                      &lt 3 J  &kp K                &kp L    &mt RCTRL ENTER
+&lt 5 Z           &kp X        &kp C           &kp V  &kp B                                  &kp N                      &kp M    &kp COMMA            &kp DOT  &kp MINUS
+&kp ESC           &kp F7       &none           &mo 1  &lt 3 SPACE  &lt 2 TAB    &lt 3 GRAVE  &mt RIGHT_SHIFT BACKSPACE           &lt 6 RIGHT_BRACKET  &kp F10  &kp RGUI
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
@@ -162,7 +167,7 @@
 
         KIGO {
             bindings = <
-&kp LS(N5)    &kp LS(DOLLAR)  &kp LS(N6)            &kp UNDERSCORE     &kp SLASH                      &kp INT3      &kp LS(RIGHT_BRACKET)  &kp LS(NON_US_HASH)  &kp LESS_THAN  &kp GREATER_THAN
+&kp LS(N5)    &kp LS(DOLLAR)  &kp LS(N6)            &kp LS(INT_RO)     &kp SLASH                      &kp INT3      &kp LS(RIGHT_BRACKET)  &kp LS(NON_US_HASH)  &kp LESS_THAN  &kp GREATER_THAN
 &kp LS(INT3)  &kp LS(N3)      &kp LS(SINGLE_QUOTE)  &kp LS(SEMICOLON)  &kp LS(MINUS)                  &kp LBKT      &kp LS(N8)             &kp LS(N9)           &kp SEMICOLON  &kp SINGLE_QUOTE
 &kp EQUAL     &kp LS(EQUAL)   &none                 &kp LS(N1)         &kp LS(SLASH)                  &kp LS(LBKT)  &kp RBKT               &kp NON_US_HASH      &kp LS(N7)     &kp LS(N2)
 &none         &none           &none                 &none              &none          &none    &none  &none                                &none                &none          &kp RGUI
@@ -212,7 +217,7 @@
             bindings = <
 &none  &none  &none  &none  &none                  &none      &kp LG(NUMBER_7)  &kp LG(NUMBER_8)  &kp LG(NUMBER_9)  &kp LG(LS(S))
 &none  &none  &none  &none  &none                  &none      &kp LG(NUMBER_4)  &kp LG(NUMBER_5)  &kp LG(NUMBER_6)  &kp LC(NUMBER_1)
-&none  &none  &none  &none  &none                  &kp LC(R)  &kp LG(NUMBER_1)  &kp LG(NUMBER_2)  &kp LG(NUMBER_3)  &kp LC(NUMBER_2)
+&none  &none  &none  &none  &none                  &kp RG(R)  &kp LG(NUMBER_1)  &kp LG(NUMBER_2)  &kp LG(NUMBER_3)  &kp LC(NUMBER_2)
 &none  &none  &none  &none  &none  &none    &none  &none                        &none             &none             &none
             >;
 
