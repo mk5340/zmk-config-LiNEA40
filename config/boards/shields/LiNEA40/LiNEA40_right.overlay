@@ -1,4 +1,7 @@
 #include "LiNEA40.dtsi"
+#include <input/processors.dtsi>　// ←追加：加速度
+#include <behaviors/input_gestures_accel.dtsi>　// ←追加：加速度
+
 &default_transform {
     col-offset = <6>;
 };
@@ -67,4 +70,14 @@
 &trackball_listener {
     status = "okay";
     device = <&trackball>;
+};
+
+&pointer_accel {
+        input-type = <INPUT_EV_REL>; // 相対座標デバイス（トラックボールやマウス等）用[cite: 6, 7]
+        track-remainders;           // 端数の移動量を蓄積して精度を上げる[cite: 7]
+        min-factor = <800>;         // 低速時の倍率（800 = 0.8倍）[cite: 6, 7]
+        max-factor = <3000>;        // 高速時の最大倍率（3000 = 3.0倍）[cite: 6, 7]
+        speed-threshold = <1200>;   // 加速が開始する速度の閾値[cite: 6, 7]
+        speed-max = <6000>;         // 最高速に達する速度の閾値[cite: 6, 7]
+        acceleration-exponent = <2>; // 加速カーブ（1=リニア、2=二次関数、3=三乗）[cite: 6, 7]
 };
