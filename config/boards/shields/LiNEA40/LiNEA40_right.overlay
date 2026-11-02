@@ -1,9 +1,10 @@
 #include "LiNEA40.dtsi"
 #include <input/processors.dtsi>
 #include <behaviors/input_gestures_accel.dtsi>
+#include <dt-bindings/zmk/modifiers.h>
 
 &default_transform {
-    col-offset = <6>;
+    col-offset = <6>;kllll
 };
 
 &kscan0 {
@@ -15,6 +16,23 @@
         , <&gpio0 10 GPIO_ACTIVE_HIGH>  //col4-NFC2
         ;
 };
+
+/ {
+    scroll_inertia_v: scroll_inertia_v {
+        compatible = "zmk,input-processor-scroll-inertia";
+        #input-processor-cells = <0>;
+
+        /* axis: 0 = 両軸（自由2D）,
+                  1 = Y軸のみ（縦スクロール）,
+                  2 = X軸のみ（横スクロール） */
+        axis      = <1>;
+        layer     = <3>;          /* 縦スクロール用のレイヤー番号 */
+
+        /* 後段の zip_scroll_scaler の引数と合わせる */
+        scale     = <4>;
+        scale-div = <675>;
+
+    };
 
 
 
@@ -83,6 +101,16 @@
     status = "okay";
     device = <&trackball>;
     input-processors = <&pointer_accel>;
+
+    scroller_v {
+    layers = <4>;
+    input-processors = <
+        &zip_y_scaler (-1) 1
+        &zip_xy_to_scroll_mapper
+        &scroll_inertia_v
+        &zip_scroll_scaler 4 675
+    >;
+    };
 };
 
 
