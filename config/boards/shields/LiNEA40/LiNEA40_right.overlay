@@ -1,6 +1,6 @@
 #include "LiNEA40.dtsi"
-#include <input/processors.dtsi>　// ←追加：加速度
-#include <behaviors/input_gestures_accel.dtsi>　// ←追加：加速度
+#include <input/processors.dtsi> // ←追加：加速度
+#include <behaviors/input_gestures_accel.dtsi> // ←追加：加速度
 #include <scroll-snap.dtsi> // ←追加：スナップ用ヘッダー
 
 &default_transform {
