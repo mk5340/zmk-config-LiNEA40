@@ -33,6 +33,24 @@
     acceleration-exponent = <0>;
 };
 
+/ {
+    // 【追加】縦スクロール用慣性プロセッサ（レイヤー3用）
+    scroll_inertia_v: scroll_inertia_v {
+        compatible = "zmk,input-processor-scroll-inertia";
+        #input-processor-cells = <0>;
+        axis = <1>;  /* 1: 縦スクロール */
+        layer = <3>; /* 対象レイヤー: 3 */
+    };
+
+    // 【追加】横スクロール用慣性プロセッサ（レイヤー1用）
+    scroll_inertia_h: scroll_inertia_h {
+        compatible = "zmk,input-processor-scroll-inertia";
+        #input-processor-cells = <0>;
+        axis = <2>;  /* 2: 横スクロール */
+        layer = <1>; /* 対象レイヤー: 1 */
+    };
+};
+
 
 / {
     // 【追加】ZMK Pointing Acceleration（微細操作重視の設定）
@@ -67,11 +85,19 @@
 
 
 &trackball_listener {
-    scroller {
-        layers = <SCROLL>;
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT> //スクロール方向を逆転
-                         , <&zip_xy_to_scroll_mapper>;
-                         , <&zip_scroll_snap>; // ★ 追加
+    // レイヤー3での縦スクロール動作（Y軸反転 ＋ スクロール変換 ＋ 慣性）
+    scroller_v {
+        layers = <3>;
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>
+                         , <&zip_xy_to_scroll_mapper>
+                         , <&scroll_inertia_v>;
+    };
+
+    // レイヤー1での横スクロール動作（スクロール変換 ＋ 慣性）
+    scroller_h {
+        layers = <1>;
+        input-processors = <&zip_xy_to_scroll_mapper>
+                         , <&scroll_inertia_h>;
     };
 
     // 【追加】通常カーソル操作時に加速プロセッサを適用
