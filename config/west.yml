@@ -10,7 +10,6 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: oleksandrmaslov # ← 追加
       url-base: https://github.com/oleksandrmaslov # ← 追加
-      remotes:
     - name: mjmjm0101 #追加
       url-base: https://github.com/mjmjm0101 #追加
   projects:
