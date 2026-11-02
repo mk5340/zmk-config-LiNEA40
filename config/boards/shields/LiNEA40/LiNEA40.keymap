@@ -51,7 +51,7 @@
         axis = <2>;  /* 2: 横スクロール */
         layer = <1>; /* 対象レイヤー: 1 */
         scale     = <1>;   /* scroll_scalerと合わせる */
-        scale-div = <10>; /* scroll_scalerと合わせる */
+        scale-div = <>; /* scroll_scalerと合わせる */
     };
 };
 
