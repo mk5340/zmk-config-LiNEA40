@@ -40,6 +40,8 @@
         #input-processor-cells = <0>;
         axis = <1>;  /* 1: 縦スクロール */
         layer = <3>; /* 対象レイヤー: 3 */
+        scale     = <4>;   /* scroll_scalerと合わせる */
+        scale-div = <675>; /* scroll_scalerと合わせる */
     };
 
     // 【追加】横スクロール用慣性プロセッサ（レイヤー1用）
@@ -48,6 +50,8 @@
         #input-processor-cells = <0>;
         axis = <2>;  /* 2: 横スクロール */
         layer = <1>; /* 対象レイヤー: 1 */
+        scale     = <4>;   /* scroll_scalerと合わせる */
+        scale-div = <675>; /* scroll_scalerと合わせる */
     };
 };
 
@@ -88,16 +92,21 @@
     // レイヤー3での縦スクロール動作（Y軸反転 ＋ スクロール変換 ＋ 慣性）
     scroller_v {
         layers = <3>;
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>
-                         , <&zip_xy_to_scroll_mapper>
-                         , <&scroll_inertia_v>;
+        input-processors = <
+            &zip_y_scaler (-1) 1
+            &zip_xy_to_scroll_mapper
+            &scroll_inertia_v
+            &zip_scroll_scaler 4 675
     };
 
     // レイヤー1での横スクロール動作（スクロール変換 ＋ 慣性）
     scroller_h {
         layers = <1>;
-        input-processors = <&zip_xy_to_scroll_mapper>
-                         , <&scroll_inertia_h>;
+        input-processors = <
+            &zip_y_scaler (-1) 1
+            &zip_xy_to_scroll_mapper
+            &scroll_inertia_h
+            &zip_scroll_scaler 4 675
     };
 
     // 【追加】通常カーソル操作時に加速プロセッサを適用
