@@ -37,7 +37,7 @@
 
 
 
-/*
+
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
@@ -45,7 +45,7 @@
 
     };
 };
-*/
+
 
 
 &pinctrl {
@@ -85,7 +85,7 @@
         irq-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; //MOT-D6
         //automouse-layer = <1>; 20261031 無効化
         snipe-layers = <2>;
-        scroll-layers = <3>;
+        //scroll-layers = <3>;
         //scroll-layers = <4 5 6>;
     };
 };
@@ -93,7 +93,7 @@
 &pointer_accel {
     input-type = <INPUT_EV_REL>;  // For relative input devices
     track-remainders;             // Accumulate fractional movements
-    min-factor = <800>;          // 0.8x at very slow speeds
+    min-factor = <300>;          // 0.3x at very slow speeds
     max-factor = <3000>;         // 3.0x at fast speeds
     speed-threshold = <1200>;     // 1200 counts/sec for 1x
     speed-max = <6000>;          // 6000 counts/sec for max accel
