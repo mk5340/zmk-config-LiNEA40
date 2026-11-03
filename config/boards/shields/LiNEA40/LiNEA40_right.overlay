@@ -33,6 +33,17 @@
         scale-div = <30>;
 
     };
+    
+    /* 横スクロール用（レイヤー1）を追加 */
+    scroll_inertia_h: scroll_inertia_h {
+        compatible = "zmk,input-processor-scroll-inertia";
+        #input-processor-cells = <0>;
+
+        axis      = <2>;          /* X軸のみ（横） */
+        layer     = <1>;          /* レイヤー1 */
+        scale     = <1>;
+        scale-div = <30>;
+    };
 };
 
 
@@ -113,6 +124,14 @@
         &scroll_inertia_v
         &zip_scroll_scaler 1 30
     >;
+    };
+    scroller_h {
+        layers = <1>;
+        input-processors = <
+            &zip_xy_to_scroll_mapper
+            &scroll_inertia_h
+            &zip_scroll_scaler 1 30
+        >;
     };
 };
 
