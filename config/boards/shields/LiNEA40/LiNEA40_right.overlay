@@ -29,8 +29,8 @@
         layer     = <3>;          /* 縦スクロール用のレイヤー番号 */
 
         /* 後段の zip_scroll_scaler の引数と合わせる */
-        scale     = <4>;
-        scale-div = <675>;
+        scale     = <1>;
+        scale-div = <30>;
 
     };
 };
@@ -111,7 +111,7 @@
         &zip_y_scaler (-1) 1
         &zip_xy_to_scroll_mapper
         &scroll_inertia_v
-        &zip_scroll_scaler 4 675
+        &zip_scroll_scaler 1 30
     >;
     };
 };
