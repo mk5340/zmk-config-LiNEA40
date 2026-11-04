@@ -69,7 +69,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,
+            //スクロール方向を逆転,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -81,26 +81,31 @@
         Function10 {
             bindings = <&kp F10>;
             key-positions = <12 13>;
+            timeout-ms = <30>;
         };
 
         RightClick {
             bindings = <&mkp MB2>;
             key-positions = <7 8>;
+            timeout-ms = <30>;
         };
 
         LeftClick {
             bindings = <&mkp MB1>;
             key-positions = <17 18>;
+            timeout-ms = <30>;
         };
 
         Function7 {
             bindings = <&kp F7>;
             key-positions = <16 17>;
+            timeout-ms = <30>;
         };
 
         hannkakuzennkaku {
             bindings = <&kp GRAVE>;
             key-positions = <34 37>;
+            timeout-ms = <30>;
         };
     };
 
