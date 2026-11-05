@@ -16,17 +16,15 @@
 #define WIRELESS 6
 
 &mt {
-    flavor = "balanced";
-    tapping-term-ms = <210>;
-    quick-tap-ms = <175>;
-    require-prior-idle-ms = <120>;
+    flavor = "tap-preferred";
+    tapping-term-ms = <175>;
+    quick-tap-ms = <125>;
 };
 
 &lt {
-    tapping-term-ms = <210>;
-    quick-tap-ms = <175>;
-    flavor = "balanced";
-    require-prior-idle-ms = <120>;
+    tapping-term-ms = <175>;
+    quick-tap-ms = <125>;
+    flavor = "tap-preferred";
 };
 
 //mouse cursol
@@ -71,7 +69,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
